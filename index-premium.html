@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin Vargas | Portfolio Profesional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060b14;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.11);
+      --stroke: rgba(255,255,255,0.14);
+      --stroke-soft: rgba(255,255,255,0.08);
+      --text: #f7fbff;
+      --muted: #aebbd0;
+      --muted-2: #7f8da3;
+      --accent: #ff6a2b;
+      --accent-2: #6ee7f9;
+      --accent-3: #9b7cff;
+      --green: #53f3a9;
+      --shadow: 0 28px 90px rgba(0,0,0,0.44);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --container: 1180px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,106,43,0.22), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(110,231,249,0.18), transparent 24%),
+        radial-gradient(circle at 70% 70%, rgba(155,124,255,0.16), transparent 26%),
+        linear-gradient(180deg, #08111f 0%, #050811 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(92%, var(--container)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(22px);
+      background: rgba(6, 11, 20, 0.62);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      box-shadow: 0 14px 35px rgba(255,106,43,.26);
+      letter-spacing: -0.06em;
+    }
+
+    .brand span:last-child { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .92rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.07); }
+
+    .hero { padding: 84px 0 58px; position: relative; }
+
+    .hero-orb {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      right: -180px;
+      top: 70px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,106,43,.18), transparent 64%);
+      filter: blur(6px);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.045));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-card {
+      padding: 54px;
+      position: relative;
+      overflow: hidden;
+      min-height: 640px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.13), transparent 28%),
+        radial-gradient(circle at 88% 76%, rgba(110,231,249,.14), transparent 28%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      border-radius: 999px;
+      color: #e7eef8;
+      font-size: .88rem;
+      margin-bottom: 26px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 7px rgba(83,243,169,.12);
+    }
+
+    h1 {
+      font-size: clamp(3.15rem, 7vw, 6.9rem);
+      line-height: .88;
+      letter-spacing: -.075em;
+      margin-bottom: 26px;
+      max-width: 860px;
+    }
+
+    .gradient-text {
+      display: inline-block;
+      background: linear-gradient(135deg, #fff 8%, #ffd2bd 36%, var(--accent) 70%, var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 760px;
+      font-size: clamp(1.03rem, 2vw, 1.2rem);
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .lead strong { color: var(--text); font-weight: 700; }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 38px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: .28s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff965f);
+      color: white;
+      box-shadow: 0 18px 42px rgba(255,106,43,.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.13);
+      color: var(--text);
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .metric {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      right: -26px;
+      bottom: -26px;
+      border-radius: 50%;
+      background: rgba(255,106,43,.12);
+    }
+
+    .metric strong { display: block; font-size: 1.25rem; letter-spacing: -.03em; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: .9rem; }
+
+    .profile-panel {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 40% 0%, rgba(110,231,249,.15), transparent 35%);
+      pointer-events: none;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      border-radius: 30px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(255,106,43,.5), rgba(110,231,249,.28), rgba(155,124,255,.44));
+      box-shadow: 0 30px 70px rgba(0,0,0,.32);
+      z-index: 2;
+    }
+
+    .avatar {
+      height: 390px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #101a2a;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .floating-badge {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(6, 11, 20, .72);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-badge small { color: var(--muted); display: block; }
+    .floating-badge strong { display: block; font-size: 1.05rem; }
+
+    .mini-card {
+      z-index: 2;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .mini-card h3 { margin-bottom: 8px; }
+    .mini-card p { color: var(--muted); font-size: .96rem; }
+
+    .section { padding: 52px 0 18px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 24px; }
+    .section-title { font-size: clamp(2rem, 4vw, 3.25rem); letter-spacing: -.055em; line-height: .98; margin-bottom: 10px; }
+    .section-subtitle { color: var(--muted); max-width: 720px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      transition: .28s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.09), transparent 32%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .card:hover { transform: translateY(-6px); border-color: rgba(255,106,43,.28); }
+    .card > * { position: relative; z-index: 2; }
+    .card h3 { font-size: 1.18rem; margin-bottom: 12px; letter-spacing: -.02em; }
+    .card p { color: var(--muted); }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      background: rgba(255,106,43,.13);
+      border: 1px solid rgba(255,106,43,.18);
+      font-size: 1.25rem;
+    }
+
+    .signature-list { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
+    .signature-list li { color: #e8eef8; padding-left: 24px; position: relative; }
+    .signature-list li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); position: absolute; left: 0; top: 9px; box-shadow: 0 0 0 6px rgba(255,106,43,.11); }
+
+    .project-card { min-height: 345px; display: flex; flex-direction: column; }
+    .project-tag {
+      align-self: flex-start;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,106,43,.14);
+      color: #ffd7c4;
+      border: 1px solid rgba(255,106,43,.22);
+      margin-bottom: 16px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #e9f1fb;
+      font-size: .86rem;
+    }
+
+    .skills-card .chip { margin-top: 0; }
+    .chip-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 18px; border-radius: 20px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.075); }
+    .timeline-item strong { color: var(--accent-2); }
+    .timeline-item p { color: var(--muted); }
+
+    .contact-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; margin-bottom: 58px; }
+    .contact-links { display: grid; gap: 14px; margin-top: 22px; }
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 17px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .25s ease;
+    }
+    .contact-link:hover { transform: translateY(-3px); background: rgba(255,255,255,.085); }
+    .contact-link small { color: var(--muted); display: block; margin-bottom: 3px; }
+    .contact-link strong { color: var(--text); }
+
+    .footer { padding: 0 0 32px; color: var(--muted-2); font-size: .92rem; }
+    .fade-up { opacity: 0; transform: translateY(22px); transition: .72s ease; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .grid-2, .grid-3, .contact-grid { grid-template-columns: 1fr; }
+      .profile-panel { order: -1; }
+      .hero-card { min-height: auto; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner { flex-direction: column; gap: 14px; }
+      .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; border-radius: 22px; }
+      .nav-links a { padding: 8px 10px; font-size: .86rem; }
+      .hero { padding-top: 42px; }
+      .hero-card, .profile-panel, .card { padding: 22px; }
+      h1 { font-size: 3.05rem; }
+      .metrics { grid-template-columns: 1fr; }
+      .avatar { height: 330px; }
+      .timeline-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#inicio" class="brand"><span class="brand-mark">KV</span> KEVIN<span>.</span>VARGAS</a>
+      <div class="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-orb"></div>
+    <div class="container hero-grid">
+      <section class="hero-card glass fade-up">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="pulse"></span> Portfolio profesional · Gestión pública · Talento · Tecnología</div>
+          <h1>Gestión pública con mirada <span class="gradient-text">digital.</span></h1>
+          <p class="lead">
+            Soy <strong>Administrador Público</strong> con experiencia en gestión institucional, procesos, capacitación, comunicación visual y desarrollo de soluciones digitales orientadas a mejorar la experiencia de las personas y la eficiencia organizacional.
+          </p>
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">Ver proyectos destacados →</a>
+            <a href="#contacto" class="btn btn-secondary">Conversemos</a>
+          </div>
+          <div class="metrics">
+            <div class="metric"><strong>Gestión del Talento</strong><span>Inducción, capacitación y retención</span></div>
+            <div class="metric"><strong>Procesos</strong><span>Análisis, mejora y documentación</span></div>
+            <div class="metric"><strong>Digital</strong><span>Web, IA, automatización y diseño</span></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="profile-panel glass fade-up">
+        <div class="avatar-wrap">
+          <div class="avatar">
+            <img src="images/194838410.png" alt="Kevin Vargas">
+          </div>
+          <div class="floating-badge">
+            <small>Perfil profesional</small>
+            <strong>Administrador Público · Universidad de Chile</strong>
+          </div>
+        </div>
+        <div class="mini-card">
+          <h3>Enfoque profesional</h3>
+          <p>Transformar información compleja en procesos claros, materiales visuales útiles y soluciones digitales con sentido práctico.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Propuesta</h3>
+          <p>Un perfil híbrido entre gestión pública, desarrollo organizacional, comunicación estratégica y tecnología aplicada.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="sobre-mi">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <h2 class="section-title">Sobre mí</h2>
+            <p class="section-subtitle">Combino criterio administrativo, visión estratégica y herramientas digitales para construir soluciones serias, claras y bien presentadas.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card fade-up">
+            <div class="icon">✦</div>
+            <h3>Propuesta de valor</h3>
+            <p>Mi trabajo se centra en ordenar, comunicar y mejorar. Desde procesos internos y documentación administrativa hasta proyectos web, busco convertir necesidades complejas en soluciones simples, elegantes y útiles.</p>
+            <ul class="signature-list">
+              <li>Levantamiento y mejora de procesos administrativos</li>
+              <li>Diseño de materiales profesionales e infografías</li>
+              <li>Desarrollo de proyectos digitales con visión estratégica</li>
+            </ul>
+          </article>
+          <article class="card fade-up">
+            <div class="icon">◈</div>
+            <h3>Resumen profesional</h3>
+            <p>Administrador Público con experiencia en entorno institucional, análisis administrativo, coordinación, capacitación y productos comunicacionales. Interés permanente en tecnología, IA y herramientas para modernizar la gestión.</p>
+            <ul class="signature-list">
+              <li>Gestión del talento, onboarding y capacitación</li>
+              <li>Comunicación clara para públicos diversos</li>
+              <li>Orientación al detalle, al impacto y a la experiencia visual</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <h2 class="section-title">Proyectos destacados</h2>
+            <p class="section-subtitle">Una selección de iniciativas que muestran gestión, criterio visual, tecnología aplicada y orientación a resultados.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card project-card fade-up">
+            <span class="project-tag">Gestión del talento</span>
+            <h3>Programa de inducción y capacitación</h3>
+            <p>Diseño y coordinación de experiencias formativas para personal institucional, combinando contenidos, plataforma, seguimiento y comunicación clara.</p>
+            <div class="project-meta">
+              <span class="chip">Moodle</span><span class="chip">Onboarding</span><span class="chip">Diseño instruccional</span>
+            </div>
+          </article>
+          <article class="card project-card fade-up">
+            <span class="project-tag">Proyecto digital</span>
+            <h3>Empleos Choapa / Empleos Mineros</h3>
+            <p>Desarrollo de plataformas orientadas a conectar oportunidades laborales con comunidades y sectores específicos, integrando diseño, difusión y gestión.</p>
+            <div class="project-meta">
+              <span class="chip">React</span><span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">UX</span>
+            </div>
+          </article>
+          <article class="card project-card fade-up">
+            <span class="project-tag">Procesos</span>
+            <h3>Optimización administrativa</h3>
+            <p>Levantamiento, revisión y mejora de procesos internos para fortalecer trazabilidad, consistencia documental y toma de decisiones.</p>
+            <div class="project-meta">
+              <span class="chip">Procesos</span><span class="chip">Indicadores</span><span class="chip">Mejora continua</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="habilidades">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <h2 class="section-title">Habilidades</h2>
+            <p class="section-subtitle">Capacidades administrativas, comunicacionales y digitales integradas en un mismo perfil profesional.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card skills-card fade-up">
+            <div class="icon">▣</div>
+            <h3>Gestión pública</h3>
+            <p>Organización, análisis y estructuración de información en contextos formales.</p>
+            <div class="chip-wrap"><span class="chip">Procesos</span><span class="chip">Informes</span><span class="chip">Documentación</span><span class="chip">Análisis</span></div>
+          </article>
+          <article class="card skills-card fade-up">
+            <div class="icon">✺</div>
+            <h3>Comunicación y diseño</h3>
+            <p>Presentación visual clara, jerarquía de información y materiales profesionales.</p>
+            <div class="chip-wrap"><span class="chip">Infografías</span><span class="chip">Presentaciones</span><span class="chip">Canva</span><span class="chip">Genially</span></div>
+          </article>
+          <article class="card skills-card fade-up">
+            <div class="icon">⌘</div>
+            <h3>Tecnología aplicada</h3>
+            <p>Herramientas digitales para crear sitios, prototipos, automatizaciones y soluciones web.</p>
+            <div class="chip-wrap"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Laravel</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div>
+            <h2 class="section-title">Línea profesional</h2>
+            <p class="section-subtitle">Áreas donde mi experiencia puede generar mayor valor.</p>
+          </div>
+        </div>
+        <div class="card fade-up">
+          <div class="timeline">
+            <div class="timeline-item"><strong>01 · Personas</strong><p>Gestión del talento, inducción, capacitación, retención y experiencia del colaborador.</p></div>
+            <div class="timeline-item"><strong>02 · Procesos</strong><p>Levantamiento, documentación, mejora continua, análisis de brechas y control de gestión.</p></div>
+            <div class="timeline-item"><strong>03 · Digital</strong><p>Proyectos web, herramientas de IA, automatización, comunicación visual y transformación digital.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <article class="card fade-up">
+            <h3>Contacto</h3>
+            <p>Disponible para oportunidades profesionales, proyectos digitales, colaboración en gestión de personas, procesos y modernización institucional.</p>
+            <div class="contact-links">
+              <a href="mailto:kev.var.arr@gmail.com" class="contact-link"><div><small>Correo</small><strong>kev.var.arr@gmail.com</strong></div><span>↗</span></a>
+              <a href="https://www.linkedin.com" target="_blank" class="contact-link"><div><small>LinkedIn</small><strong>Perfil profesional</strong></div><span>↗</span></a>
+              <a href="https://github.com/krellos98" target="_blank" class="contact-link"><div><small>GitHub</small><strong>github.com/krellos98</strong></div><span>↗</span></a>
+            </div>
+          </article>
+          <article class="card fade-up">
+            <div class="icon">★</div>
+            <h3>Mensaje final</h3>
+            <p>Este portfolio busca transmitir una idea simple: capacidad para pensar, ordenar, diseñar y ejecutar soluciones con una presentación profesional y moderna.</p>
+            <div class="chip-wrap"><span class="chip">Profesional</span><span class="chip">Estratégico</span><span class="chip">Moderno</span><span class="chip">Digital</span></div>
+          </article>
+        </div>
+        <footer class="footer fade-up">© 2026 Kevin Vargas. Portfolio profesional.</footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
