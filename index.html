@@ -1182,6 +1182,106 @@
       .system-strip span:nth-child(n+3) { display:none; }
       .section-heading::after { display:none; }
       .hero h1 { font-size:clamp(3.25rem,16vw,5rem); }
+
+      /* La portada debe abandonar por completo la retícula de escritorio. */
+      .hero-grid {
+        grid-template-columns:minmax(0,1fr);
+        width:min(calc(100% - 34px),1220px);
+      }
+      .hero-grid > * { min-width:0; width:100%; }
+      .hero-copy { max-width:none; overflow-wrap:break-word; }
+      .identity-card { max-width:none; width:100%; margin:0; overflow:hidden; }
+      .identity-top > div:last-child { min-width:0; }
+      .identity-top h2,
+      .identity-top p { overflow-wrap:anywhere; }
+      .capability > span:first-child { min-width:0; overflow-wrap:anywhere; }
+      .identity-card::after { display:none; }
+      .console-readout { max-width:calc(100% - 24px); }
+    }
+    @media (max-width:420px) {
+      .hero-grid { width:min(calc(100% - 24px),1220px); }
+      .identity-top { gap:12px; padding:18px 12px; }
+      .portrait { width:54px; height:54px; flex-basis:54px; }
+      .capability { align-items:flex-start; }
+      .capability > span:last-child { flex:0 0 auto; }
+    }
+
+    /* MARCA PROFESIONAL: IDENTIDAD VISIBLE DESDE EL PRIMER VISTAZO */
+    .professional-mark {
+      position:relative;
+      display:grid;
+      gap:8px;
+      margin-bottom:24px;
+      padding:22px 24px 23px;
+      border:1px solid rgba(240,118,46,.42);
+      border-left:5px solid #f0762e;
+      background:linear-gradient(90deg,rgba(240,118,46,.09),rgba(17,19,21,.2) 70%);
+    }
+    .professional-mark::after {
+      position:absolute;
+      right:14px;
+      top:12px;
+      content:"ID / KV-01";
+      color:rgba(240,165,77,.62);
+      font:500 .6rem "Share Tech Mono",var(--mono);
+      letter-spacing:.13em;
+    }
+    .professional-greeting {
+      display:flex;
+      align-items:center;
+      gap:9px;
+      color:#7ce9de;
+      font:600 .72rem "Share Tech Mono",var(--mono);
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .professional-greeting::before {
+      width:8px;
+      height:8px;
+      content:"";
+      background:var(--cyan);
+      box-shadow:0 0 10px rgba(214,255,63,.62);
+    }
+    .hero h1.professional-name {
+      max-width:none;
+      margin:0;
+      color:var(--text);
+      font-size:clamp(3.7rem,7.6vw,7.4rem);
+      font-weight:900;
+      line-height:.82;
+      letter-spacing:-.045em;
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+    .professional-role {
+      margin:3px 0 0;
+      color:#f0a54d;
+      font:500 clamp(.84rem,1.25vw,1.05rem) "Share Tech Mono",var(--mono);
+      letter-spacing:.11em;
+      line-height:1.35;
+      text-transform:uppercase;
+    }
+    .hero-statement {
+      max-width:690px;
+      margin:0 0 18px;
+      color:var(--text);
+      font-size:clamp(2.15rem,4.4vw,4.3rem);
+      font-weight:800;
+      line-height:.92;
+      letter-spacing:-.035em;
+      text-transform:uppercase;
+    }
+    .hero-statement span { color:var(--cyan); }
+    .hero-copy strong { color:var(--text); font-weight:600; }
+
+    @media (max-width:760px) {
+      .professional-mark { margin-bottom:20px; padding:19px 15px 18px; }
+      .professional-mark::after { right:10px; top:9px; font-size:.52rem; }
+      .professional-greeting { font-size:.66rem; }
+      .hero h1.professional-name { font-size:clamp(3.35rem,16vw,5.15rem); }
+      .professional-role { max-width:90%; font-size:.8rem; letter-spacing:.075em; }
+      .hero-statement { font-size:clamp(2rem,10.5vw,3.25rem); }
+      .hero-copy { line-height:1.6; }
     }
   </style>
   <script>document.documentElement.classList.add("js");</script>
@@ -1219,11 +1319,18 @@
     <div class="system-strip" aria-hidden="true"><span>ESTADO: ACTIVO</span><span>GESTIÓN DE PERSONAS</span><span>PROCESOS ADMINISTRATIVOS</span><span>SISTEMA DE APRENDIZAJE</span><span>CONTROL DOCUMENTAL: VIGENTE</span></div>
     <div class="container hero-grid">
       <div class="reveal">
-        <div class="eyebrow">Sistema de información profesional · Registro KV–01</div>
-        <h1>Diseño procesos para <span>aprender mejor.</span></h1>
+        <div class="eyebrow">Portafolio profesional · Sistema de información KV–01</div>
+        <div class="professional-mark">
+          <span class="professional-greeting">Hola, soy</span>
+          <h1 class="professional-name">Kevin Vargas</h1>
+          <p class="professional-role">Administrador Público · Universidad de Chile</p>
+        </div>
+        <h2 class="hero-statement">Diseño procesos para <span>aprender mejor.</span></h2>
         <p class="hero-copy">
-          Soy Administrador Público. Me gusta tomar problemas que suelen verse complejos y convertirlos
-          en procesos más claros, especialmente en gestión de personas, capacitación y herramientas digitales.
+          En este portafolio quiero contarte cómo he abordado proyectos de <strong>gestión de personas,
+          aprendizaje y mejora de procesos</strong>. Su interfaz toma elementos de las consolas retrofuturistas
+          japonesas para presentar, de una forma distinta, un trabajo que busca ordenar información y hacer
+          más claras las experiencias.
         </p>
 
         <div class="actions">
