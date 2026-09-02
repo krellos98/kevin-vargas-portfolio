@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -871,6 +871,310 @@
       .record-signals { grid-template-columns:1fr; }
       .experience-card,.project,.profile-card { padding-inline:18px; }
     }
+    /* CAPA DE CONSOLA: EFECTOS Y LECTURAS EN TIEMPO REAL */
+    .digital { font-family:"Share Tech Mono",var(--mono); font-variant-numeric:tabular-nums; letter-spacing:.08em; }
+    .console-dock {
+      position:fixed; z-index:19; right:22px; bottom:20px; width:270px;
+      border:1px solid rgba(240,118,46,.46); background:rgba(7,9,10,.93);
+      box-shadow:0 0 18px rgba(240,118,46,.08); backdrop-filter:blur(8px);
+      font-family:"Share Tech Mono",var(--mono); pointer-events:none;
+    }
+    .console-dock-head { display:flex; justify-content:space-between; padding:6px 9px; background:rgba(240,118,46,.14); border-bottom:1px solid rgba(240,118,46,.4); color:#f08a43; font-size:.67rem; }
+    .console-dock-body { display:grid; grid-template-columns:1fr auto; gap:7px 12px; padding:9px; color:#8de8df; font-size:.65rem; }
+    .console-dock-body b { color:#ece9dc; font-weight:400; }
+    .console-live { display:inline-flex; align-items:center; gap:6px; }
+    .console-live::before { width:6px; height:6px; content:""; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:statusPulse 1.8s steps(2,end) infinite; }
+    .boot-line { grid-column:1/-1; min-height:1.3em; overflow:hidden; color:#f0a54d; white-space:nowrap; }
+    .scan-beam { position:fixed; z-index:60; top:-18vh; left:0; width:100%; height:18vh; opacity:.055; background:linear-gradient(transparent,rgba(124,233,222,.5),transparent); pointer-events:none; animation:scanPage 9s linear infinite; }
+    .section::after { position:absolute; right:max(32px,calc((100vw - 1220px)/2)); top:34px; content:attr(data-console); color:rgba(240,165,77,.46); font:400 .65rem "Share Tech Mono",var(--mono); letter-spacing:.14em; }
+    .stat strong,.progress-value,.analytics-metric strong,.impact-item strong,.detail-number { font-family:"Share Tech Mono",var(--mono); text-shadow:0 0 9px currentColor; }
+    .stat { position:relative; overflow:hidden; }
+    .stat::after { position:absolute; right:8px; top:8px; content:"0" counter(stat); color:rgba(124,233,222,.22); font:400 .72rem "Share Tech Mono"; }
+    .stats-grid { counter-reset:stat; }
+    .stat { counter-increment:stat; }
+    .console-meter > i,.record-signal i,.progress-bar { animation:meterGlow 2.4s ease-in-out infinite alternate; }
+    .console-readout,.analytics-card,.impact-card { position:relative; overflow:hidden; }
+    .console-readout::after,.analytics-card::after,.impact-card::after { position:absolute; inset:0; content:""; opacity:.12; background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(124,233,222,.14) 3px 4px); pointer-events:none; }
+    @keyframes scanPage { to { transform:translateY(136vh); } }
+    @keyframes statusPulse { 50% { opacity:.25; } }
+    @keyframes meterGlow { from { filter:brightness(.82); } to { filter:brightness(1.2) drop-shadow(0 0 3px rgba(240,118,46,.28)); } }
+    @media (max-width:900px) {
+      .console-dock { position:static; width:min(calc(100% - 34px),1220px); margin:18px auto 0; }
+      .scan-beam { display:none; }
+      body { background-size:48px 48px; }
+    }
+    @media (max-width:760px) {
+      html { scroll-padding-top:68px; }
+      body { font-size:16px; overflow-x:hidden; }
+      .nav-inner { min-height:62px; }
+      .brand-label span { display:none; }
+      .brand-sign { width:38px; height:30px; }
+      .nav-links { gap:8px; }
+      .nav-links a:not(.nav-contact) { display:none; }
+      .nav-contact { min-height:40px; display:inline-flex; align-items:center; padding:0 12px; }
+      .system-strip { top:62px; font-size:.52rem; }
+      .hero { padding:104px 0 62px; }
+      .hero-grid { gap:38px; }
+      .hero-copy { font-size:1rem; padding-top:25px; }
+      .actions { display:grid; grid-template-columns:1fr; }
+      .button { width:100%; min-height:48px; }
+      .hero-tags { gap:6px; }
+      .hero-tags span { padding:5px 7px; font-size:.62rem; }
+      .identity-card { box-shadow:5px 5px 0 rgba(117,96,168,.08); }
+      .identity-top { align-items:flex-start; }
+      .console-row { grid-template-columns:82px 1fr 28px; font-size:.55rem; }
+      .triad { gap:6px; }
+      .triad-module { min-height:60px; padding:6px; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); margin-inline:16px; }
+      .stat { min-height:106px; padding:16px 12px; }
+      .process-area { padding-inline:16px; }
+      .subheading { align-items:flex-start; flex-direction:column; }
+      .tour-button { min-height:44px; }
+      .journey-canvas { height:auto; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:7px; padding:42px 10px 12px; }
+      .journey-map,.learner-dot { display:none; }
+      .journey-station { position:relative !important; left:auto !important; top:auto !important; width:auto; min-height:76px; transform:none; }
+      .journey-station:hover,.journey-station[aria-selected="true"] { transform:none; }
+      .journey-counter { top:10px; bottom:auto; }
+      .theater-body { grid-template-columns:1fr; min-height:auto; }
+      .scene-narrative { min-height:210px; padding:22px 18px; }
+      .scene-window { min-height:330px; }
+      .process-detail { grid-template-columns:40px 1fr; padding:16px; }
+      .detail-output { grid-column:1/-1; justify-self:stretch; text-align:center; }
+      .learning-area { padding-inline:16px; }
+      .module { min-height:58px; padding:9px; }
+      .experience-layout { gap:12px; }
+      .projects-grid,.profile-grid { gap:10px; }
+      .contact-box { gap:22px; }
+      .contact-links { align-items:flex-start; flex-direction:column; }
+    }
+    @media (max-width:420px) {
+      .container { width:min(calc(100% - 24px),1220px); }
+      .hero h1 { font-size:3.05rem; }
+      .journey-canvas { grid-template-columns:1fr; }
+      .scene-window { min-height:360px; }
+      .console-readout { margin-inline:12px; }
+      .identity-label,.capability,.identity-foot { margin-left:12px; margin-right:12px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .scan-beam,.console-live::before,.console-meter > i,.record-signal i,.progress-bar { animation:none !important; }
+    }
+    /* AJUSTES FINALES: ENCABEZADO, RECORRIDO NARANJO Y DISPLAY DE 7 SEGMENTOS */
+    .nav { background:#d3d2c9; border-bottom:0; color:#0b0c0d; }
+    .nav::before { width:100%; height:3px; bottom:-3px; background:var(--amber); }
+    .nav::after { display:none; }
+    .brand-sign { border-color:#0b0c0d; color:#0b0c0d; background:rgba(11,12,13,.04); }
+    .brand-label strong { color:#0b0c0d; }
+    .brand-label span,.nav-links a { color:#303236; }
+    .nav-links a:hover { color:#000; }
+    .nav-contact { border-color:#0b0c0d; color:#0b0c0d !important; }
+    .system-strip { top:72px; background:#0b0c0d; color:#d3d2c9; border-bottom:1px solid rgba(214,154,52,.7); }
+    .system-strip span:first-child { color:var(--cyan); }
+    .system-strip span:last-child { color:#f0a54d; }
+    .portrait { font:700 1rem "Share Tech Mono",var(--mono); color:#0b0c0d; background:#d3d2c9; border-color:var(--amber); }
+    .portrait::after { position:absolute; inset:auto 0 0; padding:3px; content:"ID / KV-01"; color:#f0a54d; background:#0b0c0d; font:400 .44rem var(--mono); letter-spacing:.08em; text-align:center; }
+    .process-area { position:relative; }
+    .process-area::before { position:absolute; left:0; top:0; bottom:0; width:3px; content:""; background:linear-gradient(var(--amber),rgba(214,154,52,.08)); }
+    .subheading { padding:12px 14px; border:1px solid rgba(240,138,67,.35); background:linear-gradient(90deg,rgba(240,118,46,.09),transparent 65%); }
+    .subheading strong { color:#f0a54d; font-family:var(--mono); letter-spacing:.04em; }
+    .tour-button { color:#0b0c0d; background:#f0a54d; border-color:#f0a54d; font-weight:700; }
+    .tour-button:hover { background:#ffb264; }
+    .tour-play { color:#f0a54d; background:#0b0c0d; }
+    .journey-canvas { border-color:rgba(240,138,67,.42); background:radial-gradient(circle at 13% 20%,rgba(240,118,46,.11),transparent 28%),#090b0c; }
+    .journey-grid { background-image:radial-gradient(circle,rgba(240,138,67,.22) 1px,transparent 1.5px); }
+    .journey-path-base { stroke:rgba(240,138,67,.17); }
+    .journey-path-progress { stroke:#f0762e; filter:drop-shadow(0 0 7px rgba(240,118,46,.68)); }
+    .journey-station { border-left-color:#a64d21; }
+    .journey-station:hover { border-color:rgba(240,138,67,.55); }
+    .journey-station[aria-selected="true"] { border-color:#f0762e; border-left-color:#f0762e; background:#21140f; box-shadow:6px 6px 0 rgba(240,118,46,.11),inset 0 0 20px rgba(240,118,46,.035); }
+    .journey-station[aria-selected="true"] .station-index,.journey-station[data-visited="true"] .station-index { color:#f0a54d; }
+    .learner-dot { background:#f0762e; box-shadow:0 0 0 7px rgba(240,118,46,.13),0 0 28px rgba(240,118,46,.95); }
+    .journey-counter { color:#f0a54d; border-color:rgba(240,138,67,.4); background:#130d0a; }
+    .stage-theater { border-top-color:#f0762e; }
+    .theater-light { background:#f0762e; box-shadow:0 0 10px #f0762e; }
+    .detail-number { color:#f0a54d; }
+    .seven-display { display:inline-flex !important; align-items:center; gap:.09em; min-height:1.25em; color:#f08a43 !important; line-height:1; filter:drop-shadow(0 0 5px rgba(240,118,46,.42)); }
+    .seven-prefix,.seven-word { font:400 .66em "Share Tech Mono",var(--mono); }
+    .seven-digit { position:relative; display:inline-block; width:.58em; height:1em; flex:0 0 .58em; }
+    .seven-seg { position:absolute; opacity:.075; background:currentColor; transition:opacity .08s linear; }
+    .seven-seg.on { opacity:1; box-shadow:0 0 .11em currentColor; }
+    .seven-seg.a,.seven-seg.d,.seven-seg.g { left:17%; width:66%; height:9%; clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%); }
+    .seven-seg.a { top:1%; }.seven-seg.g { top:45.5%; }.seven-seg.d { bottom:1%; }
+    .seven-seg.b,.seven-seg.c,.seven-seg.e,.seven-seg.f { width:12%; height:40%; clip-path:polygon(50% 0,100% 9%,100% 91%,50% 100%,0 91%,0 9%); }
+    .seven-seg.b { right:2%; top:7%; }.seven-seg.c { right:2%; bottom:7%; }
+    .seven-seg.f { left:2%; top:7%; }.seven-seg.e { left:2%; bottom:7%; }
+    .stat strong.seven-display { font-size:2.15rem; letter-spacing:0; }
+    .analytics-metric strong.seven-display,.impact-item strong.seven-display { font-size:1.05rem; }
+    @media (max-width:760px) {
+      .nav { background:#d3d2c9; }
+      .system-strip { top:62px; }
+      .process-area::before { display:none; }
+      .subheading { padding:12px; }
+      .stat strong.seven-display { font-size:1.85rem; }
+    }
+    /* LEGIBILIDAD Y PANEL DE RECORRIDO */
+    .case-intro { padding-top:38px; padding-bottom:34px; }
+    .case-intro p { max-width:1020px; color:#eeeae0; font-size:clamp(1.2rem,1.8vw,1.48rem); line-height:1.55; font-weight:500; }
+    .stats-grid { min-height:150px; }
+    .stat { display:flex; flex-direction:column; justify-content:center; padding:24px 20px; }
+    .stat strong { font-size:clamp(2.5rem,4vw,3.65rem); line-height:1; }
+    .stat strong.seven-display { font-size:clamp(2.75rem,4.6vw,4.15rem); }
+    .stat span { margin-top:13px; color:#d2cfc5; font-size:clamp(.92rem,1.15vw,1.08rem); line-height:1.25; font-weight:600; }
+    .process-area { margin:34px 27px 30px; padding:0 18px 20px; border:1px solid rgba(240,118,46,.55); background:#090b0c; box-shadow:0 0 22px rgba(240,118,46,.035); }
+    .process-area::before { display:none; }
+    .subheading { margin:0 -18px 18px; padding:11px 15px; border:0; border-bottom:1px solid rgba(240,118,46,.55); background:rgba(240,118,46,.14); }
+    .subheading-copy { grid-template-columns:auto 1fr; align-items:baseline; column-gap:15px; }
+    .subheading strong { color:#f0a54d; font-size:1.04rem; }
+    .subheading span { color:#dad6ca; font-size:.78rem; }
+    .subheading span::before { content:"REF. "; color:#7ce9de; }
+    .journey-canvas { min-height:430px; border-color:rgba(124,233,222,.35); box-shadow:inset 0 0 28px rgba(124,233,222,.025); }
+    .journey-canvas::before { position:absolute; z-index:3; left:12px; top:10px; content:"RUTA DE IMPLEMENTACIÓN  /  06 ETAPAS"; color:#7ce9de; font:500 .72rem "Share Tech Mono",var(--mono); letter-spacing:.08em; }
+    .journey-canvas::after { position:absolute; z-index:3; right:12px; top:10px; content:"ESTADO: OPERATIVO"; color:#f0a54d; font:500 .68rem "Share Tech Mono",var(--mono); letter-spacing:.07em; }
+    .journey-station { width:158px; min-height:82px; padding:13px 14px; }
+    .station-index { color:#f0a54d; font-size:.72rem; }
+    .station-name { color:#f0eee6; font-size:.9rem; }
+    .journey-counter { font-size:.76rem; }
+    .stage-theater { margin-top:18px; }
+    .theater-top { min-height:54px; padding-inline:18px; }
+    .theater-brand { font-size:.82rem; }
+    .theater-button { width:42px; height:38px; font-size:1.05rem; }
+    .scene-narrative { padding:34px 30px; }
+    .scene-chapter { font-size:.8rem; }
+    .scene-title { font-size:clamp(1.65rem,2.5vw,2.25rem); line-height:1.12; }
+    .scene-copy { color:#d1cec5; font-size:1.05rem; line-height:1.55; }
+    .scene-evidence { font-size:.78rem; }
+    .blueprint-heading,.analytics-top,.moodle-bar { font-size:.86rem; }
+    .blueprint-module strong,.analytics-metric strong { font-size:1.05rem; }
+    .blueprint-module span,.analytics-metric span,.impact-item span { font-size:.72rem; }
+    .content-copy strong,.moodle-row { font-size:.8rem; }
+    .content-copy span { font-size:.68rem; }
+    .impact-card h5 { font-size:1.55rem; }
+    .impact-label,.theater-status { font-size:.72rem; }
+    @media (max-width:760px) {
+      .case-intro { padding:27px 17px 24px; }
+      .case-intro p { font-size:1.12rem; }
+      .stats-grid { min-height:0; }
+      .stat { min-height:132px; padding:18px 14px; }
+      .stat strong,.stat strong.seven-display { font-size:2.65rem; }
+      .stat span { font-size:.92rem; }
+      .process-area { margin:26px 16px 22px; padding:0 10px 12px; }
+      .subheading { margin-inline:-10px; padding:12px; }
+      .subheading-copy { display:grid; grid-template-columns:1fr; gap:4px; }
+      .subheading strong { font-size:.92rem; }
+      .subheading span { font-size:.69rem; }
+      .journey-canvas { min-height:0; padding-top:48px; }
+      .journey-canvas::before { left:10px; font-size:.62rem; }
+      .journey-canvas::after { display:none; }
+      .journey-station { width:auto; min-height:86px; }
+      .station-name { font-size:.84rem; }
+      .theater-top { min-height:52px; }
+      .theater-brand { font-size:.72rem; }
+      .scene-title { font-size:1.65rem; }
+      .scene-copy { font-size:1rem; }
+      .scene-narrative { min-height:240px; padding:25px 20px; }
+    }
+    /* EQUILIBRIO DE CIFRAS: DISPLAY GRANDE / CONSOLA TRADICIONAL EN TARJETAS PEQUEÑAS */
+    .stat strong.seven-display {
+      min-height:1.12em;
+      font-size:clamp(3.65rem,5.8vw,5.35rem);
+      gap:.13em;
+    }
+    .stat .seven-digit { width:.66em; flex-basis:.66em; }
+    .stat .seven-prefix { margin-right:.04em; font-size:.7em; }
+    .analytics-metrics { gap:12px; margin-bottom:20px; }
+    .analytics-metric { min-height:82px; display:flex; flex-direction:column; justify-content:center; padding:12px 13px; }
+    .analytics-metric strong,
+    .analytics-metric strong.seven-display {
+      display:block !important;
+      min-height:auto;
+      margin:0 0 9px;
+      color:#f0a54d !important;
+      font:400 1.45rem "Share Tech Mono",var(--mono);
+      letter-spacing:.05em;
+      line-height:1;
+      filter:none;
+      text-shadow:0 0 8px rgba(240,118,46,.22);
+    }
+    .analytics-metric span { display:block; color:#d2cfc5; font-size:.78rem; line-height:1.2; }
+    @media (max-width:760px) {
+      .stat strong.seven-display { font-size:3.35rem; }
+      .stat .seven-digit { width:.63em; flex-basis:.63em; }
+      .analytics-metrics { gap:7px; }
+      .analytics-metric { min-height:76px; padding:10px 8px; }
+      .analytics-metric strong,.analytics-metric strong.seven-display { font-size:1.2rem; margin-bottom:7px; }
+      .analytics-metric span { font-size:.69rem; }
+    }
+    /* CORRECCIÓN ÓPTICA DEFINITIVA */
+    .stat strong.seven-display {
+      display:flex !important;
+      align-items:center;
+      gap:8px;
+      min-height:78px;
+      font-size:1rem;
+      filter:drop-shadow(0 0 7px rgba(240,118,46,.48));
+    }
+    .stat strong.seven-display::after { display:none; content:none; }
+    .stat strong.seven-display .seven-digit {
+      width:43px;
+      height:72px;
+      flex:0 0 43px;
+      font-size:1rem;
+    }
+    .stat strong.seven-display .seven-prefix {
+      margin:0 1px 0 0;
+      font:400 3.8rem "Share Tech Mono",var(--mono);
+      line-height:1;
+    }
+    .stat strong:not(.seven-display) { min-height:78px; display:flex; align-items:center; font-size:4.4rem; }
+    .impact-item { min-height:102px; display:flex; flex-direction:column; justify-content:center; padding:14px; }
+    .impact-item strong,
+    .impact-item strong.seven-display {
+      display:block !important;
+      min-height:auto;
+      margin:0 0 12px;
+      color:#f0a54d !important;
+      font:400 1.65rem "Share Tech Mono",var(--mono);
+      letter-spacing:.05em;
+      line-height:1;
+      filter:none;
+      text-shadow:0 0 8px rgba(240,118,46,.25);
+    }
+    .impact-item span { color:#d4d1c7; font-size:.82rem; line-height:1.25; }
+    @media (max-width:760px) {
+      .stat strong.seven-display { gap:7px; min-height:60px; }
+      .stat strong.seven-display .seven-digit { width:31px; height:54px; flex-basis:31px; }
+      .stat strong.seven-display .seven-prefix { font-size:2.8rem; }
+      .stat strong:not(.seven-display) { min-height:60px; font-size:3.15rem; }
+      .impact-item { min-height:98px; padding:12px; }
+      .impact-item strong,.impact-item strong.seven-display { font-size:1.42rem; margin-bottom:10px; }
+      .impact-item span { font-size:.76rem; }
+    }
+    /* CAPA FINAL: TABLERO RETRO INSTITUCIONAL */
+    .status-lamps { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .status-lamp { display:inline-flex; align-items:center; gap:7px; padding:6px 9px; border:1px solid var(--line); background:#0b0d0e; color:#b8b6ad; font:500 .6rem "Share Tech Mono",var(--mono); letter-spacing:.06em; }
+    .status-lamp::before { width:7px; height:7px; content:""; border:1px solid currentColor; background:#7ce9de; box-shadow:0 0 8px rgba(124,233,222,.68); }
+    .status-lamp.warn::before { background:#f0762e; box-shadow:0 0 8px rgba(240,118,46,.72); }
+    .status-lamp.safe::before { background:var(--cyan); box-shadow:0 0 8px rgba(214,255,63,.65); }
+    .instrument-scale { position:absolute; z-index:2; top:58px; bottom:44px; width:12px; opacity:.52; pointer-events:none; background:repeating-linear-gradient(to bottom,rgba(240,165,77,.9) 0 1px,transparent 1px 12px); }
+    .instrument-scale.left { left:8px; }.instrument-scale.right { right:8px; }
+    .instrument-scale::before,.instrument-scale::after { position:absolute; color:#f0a54d; font:400 .48rem "Share Tech Mono"; }
+    .instrument-scale::before { top:-15px; content:"100"; }.instrument-scale::after { bottom:-15px; content:"000"; }
+    .ignition-screen { position:fixed; z-index:999; inset:0; display:grid; place-items:center; background:#080a0b; color:#f0a54d; font-family:"Share Tech Mono",var(--mono); animation:ignitionExit .9s steps(5,end) .45s forwards; pointer-events:none; }
+    .ignition-core { width:min(430px,calc(100% - 40px)); padding:20px; border:1px solid rgba(240,118,46,.65); background:#090b0c; }
+    .ignition-title { margin-bottom:13px; font-size:.78rem; letter-spacing:.12em; }
+    .ignition-lights { display:grid; grid-template-columns:repeat(6,1fr); gap:7px; }
+    .ignition-lights i { height:9px; background:#21140f; animation:lampStart .5s steps(2,end) forwards; animation-delay:calc(var(--lamp) * 70ms); }
+    .ignition-lights i:nth-child(3n) { color:#7ce9de; }
+    @keyframes lampStart { to { background:currentColor; box-shadow:0 0 10px currentColor; } }
+    @keyframes ignitionExit { 70% { opacity:1; } 100% { opacity:0; visibility:hidden; } }
+    .contact-email { display:inline-flex; align-items:center; gap:10px; margin-top:16px; padding:11px 14px; border:1px solid rgba(124,233,222,.32); color:#bdfbf4; background:#090c0d; font:500 .82rem "Share Tech Mono",var(--mono); letter-spacing:.04em; user-select:all; }
+    .contact-email::before { content:"MAIL"; color:#f0a54d; font-size:.62rem; }
+    @media (max-width:760px) {
+      .status-lamps { gap:6px; }
+      .status-lamp { font-size:.55rem; }
+      .instrument-scale { display:none; }
+      .contact-email { width:100%; overflow-wrap:anywhere; font-size:.75rem; }
+    }
+    @media (prefers-reduced-motion:reduce) { .ignition-screen { display:none; } }
     footer { border-top:4px solid var(--violet); background:#080909; }
     .eva-side-label { color:#60645e; }
     @media (max-width:760px) {
@@ -884,6 +1188,13 @@
 </head>
 
 <body>
+  <div class="ignition-screen" aria-hidden="true">
+    <div class="ignition-core">
+      <div class="ignition-title">KV.OS / COMPROBACIÓN DE SISTEMAS</div>
+      <div class="ignition-lights"><i style="--lamp:0"></i><i style="--lamp:1"></i><i style="--lamp:2"></i><i style="--lamp:3"></i><i style="--lamp:4"></i><i style="--lamp:5"></i></div>
+    </div>
+  </div>
+  <div class="scan-beam" aria-hidden="true"></div>
   <div class="eva-side-label" aria-hidden="true">K.V. // HUMAN DEVELOPMENT SYSTEM // 2026</div>
   <nav class="nav" aria-label="Navegación principal">
     <div class="container nav-inner">
@@ -900,7 +1211,6 @@
         <a href="#experiencia">Experiencia</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#perfil">Perfil</a>
-        <a class="nav-contact" href="#contacto">Hablemos</a>
       </div>
     </div>
   </nav>
@@ -918,7 +1228,6 @@
 
         <div class="actions">
           <a class="button button-primary" href="#induccion">Explorar caso de inducción →</a>
-          <a class="button button-secondary" href="#contacto">Conversemos</a>
         </div>
 
         <div class="hero-tags" aria-label="Áreas de especialización">
@@ -927,13 +1236,17 @@
           <span>Moodle</span>
           <span>Mejora de procesos</span>
         </div>
+        <div class="status-lamps" aria-label="Estado de antecedentes">
+          <span class="status-lamp safe">SISTEMA ACTIVO</span>
+          <span class="status-lamp">DATOS DISPONIBLES</span>
+          <span class="status-lamp warn">REGISTRO VALIDADO</span>
+        </div>
       </div>
 
       <aside class="identity-card reveal" aria-label="Resumen profesional">
         <div class="identity-top">
           <div class="portrait">
             <span aria-hidden="true">KV</span>
-            <img src="images/194838410.jpg" alt="Kevin Vargas" onerror="this.hidden=true">
           </div>
           <div>
             <h2>Kevin Vargas</h2>
@@ -965,7 +1278,7 @@
   </header>
 
   <main>
-    <section id="induccion" class="section section-border">
+    <section id="induccion" class="section section-border" data-console="SYS.01 / FORMACIÓN">
       <div class="container">
         <div class="section-heading reveal">
           <span class="kicker">01 / Caso de estudio</span>
@@ -1012,12 +1325,14 @@
             </div>
 
             <div class="journey-canvas" id="journey-canvas" role="tablist" aria-label="Recorrido interactivo del diseño formativo">
+              <span class="instrument-scale left" aria-hidden="true"></span>
+              <span class="instrument-scale right" aria-hidden="true"></span>
               <div class="journey-grid" aria-hidden="true"></div>
               <svg class="journey-map" viewBox="0 0 1000 385" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
                   <linearGradient id="journey-gradient" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#5797ff"></stop>
-                    <stop offset="100%" stop-color="#76dfd1"></stop>
+                    <stop offset="0%" stop-color="#f0762e"></stop>
+                    <stop offset="100%" stop-color="#f0a54d"></stop>
                   </linearGradient>
                 </defs>
                 <path class="journey-path-base" d="M 100 89 L 360 89 L 630 89 C 760 89 810 120 880 193 C 824 255 760 297 620 297 L 340 297"></path>
@@ -1236,7 +1551,7 @@
       </div>
     </section>
 
-    <section id="experiencia" class="section section-border">
+    <section id="experiencia" class="section section-border" data-console="SYS.02 / TRAYECTORIA">
       <div class="container experience-layout">
         <div class="section-heading reveal">
           <span class="kicker">02 / Experiencia</span>
@@ -1285,7 +1600,7 @@
       </div>
     </section>
 
-    <section id="proyectos" class="section section-border">
+    <section id="proyectos" class="section section-border" data-console="SYS.03 / INICIATIVAS">
       <div class="container">
         <div class="section-heading reveal">
           <span class="kicker">03 / Proyectos aplicados</span>
@@ -1318,7 +1633,7 @@
       </div>
     </section>
 
-    <section id="perfil" class="section section-border">
+    <section id="perfil" class="section section-border" data-console="SYS.04 / ANTECEDENTES">
       <div class="container">
         <div class="section-heading reveal">
           <span class="kicker">04 / Formación y herramientas</span>
@@ -1354,24 +1669,29 @@
       </div>
     </section>
 
-    <section id="contacto" class="section section-border">
+    <section id="contacto" class="section section-border" data-console="SYS.05 / ENLACE">
       <div class="container">
         <div class="contact-box reveal">
           <div>
             <span class="kicker">05 / Contacto</span>
             <h2>Si algo de esto te hizo sentido, conversemos.</h2>
             <p>Siempre estoy disponible para conversar sobre gestión de personas, aprendizaje, desarrollo organizacional o mejora de procesos.</p>
-            <div class="contact-links">
-              <a href="mailto:kev.var.arr@gmail.com">kev.var.arr@gmail.com</a>
-              <a href="https://www.linkedin.com/in/kvargass/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a href="https://github.com/krellos98" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            </div>
+            <span class="contact-email">kev.var.arr@gmail.com</span>
           </div>
-          <a class="button button-primary" href="mailto:kev.var.arr@gmail.com">Escríbeme →</a>
         </div>
       </div>
     </section>
   </main>
+
+  <aside class="console-dock" aria-label="Estado del sistema profesional">
+    <div class="console-dock-head"><span>KV.OS / PANEL</span><span id="console-clock">00:00:00</span></div>
+    <div class="console-dock-body">
+      <span>ESTADO</span><b class="console-live">DISPONIBLE</b>
+      <span>SECCIÓN</span><b id="console-section">INICIO</b>
+      <span>REGISTRO</span><b>KV–01 / 2026</b>
+      <span class="boot-line" id="boot-line">INICIALIZANDO CONSULTA...</span>
+    </div>
+  </aside>
 
   <footer>
     <div class="container footer-inner">
@@ -1576,6 +1896,37 @@
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+      const sevenMap = {
+        "0":"abcdef", "1":"bc", "2":"abdeg", "3":"abcdg", "4":"bcfg",
+        "5":"acdfg", "6":"acdefg", "7":"abc", "8":"abcdefg", "9":"abcdfg"
+      };
+
+      function renderSeven(element, value) {
+        const label = String(value);
+        element.setAttribute("aria-label", label);
+        element.classList.add("seven-display");
+        element.innerHTML = "";
+        for (const character of label) {
+          if (/\d/.test(character)) {
+            const digit = document.createElement("span");
+            digit.className = "seven-digit";
+            digit.setAttribute("aria-hidden", "true");
+            for (const segmentName of "abcdefg") {
+              const segment = document.createElement("i");
+              segment.className = "seven-seg " + segmentName + (sevenMap[character].includes(segmentName) ? " on" : "");
+              digit.appendChild(segment);
+            }
+            element.appendChild(digit);
+          } else {
+            const text = document.createElement("span");
+            text.className = /[+\-]/.test(character) ? "seven-prefix" : "seven-word";
+            text.setAttribute("aria-hidden", "true");
+            text.textContent = character;
+            element.appendChild(text);
+          }
+        }
+      }
+
       function animateCounter(element) {
         const target = Number(element.dataset.count);
         const prefix = element.dataset.prefix || "";
@@ -1585,7 +1936,7 @@
         function frame(now) {
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          element.textContent = `${prefix}${Math.round(target * eased)}`;
+          renderSeven(element, prefix + Math.round(target * eased));
           if (progress < 1) window.requestAnimationFrame(frame);
         }
 
@@ -1615,6 +1966,12 @@
         journeyObserver.observe(journeyCanvas);
       }
 
+      if (reduceMotion) {
+        document.querySelectorAll("[data-count]").forEach(element => {
+          renderSeven(element, (element.dataset.prefix || "") + element.dataset.count);
+        });
+      }
+
       const modules = Array.from(document.querySelectorAll(".module"));
       const progressValue = document.getElementById("progress-value");
       const progressBar = document.getElementById("progress-bar");
@@ -1624,7 +1981,7 @@
       function updateProgress() {
         const completed = modules.filter(module => module.dataset.complete === "true").length;
         const percentage = Math.round(completed / modules.length * 100);
-        progressValue.textContent = `${percentage}%`;
+        renderSeven(progressValue, percentage + "%");
         progressBar.style.width = `${percentage}%`;
         progressTrack.setAttribute("aria-valuenow", String(percentage));
         progressNote.textContent = `${completed} de ${modules.length} etapas completadas.`;
@@ -1658,6 +2015,60 @@
       document.getElementById("year").textContent = String(new Date().getFullYear());
       updateProgress();
       window.requestAnimationFrame(() => positionLearner(activeStage));
+    })();
+  </script>
+  <script>
+    (() => {
+      const clock = document.getElementById("console-clock");
+      const sectionReadout = document.getElementById("console-section");
+      const bootLine = document.getElementById("boot-line");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const bootMessages = [
+        "CONSULTA DE PERFIL HABILITADA",
+        "ANTECEDENTES VERIFICADOS",
+        "MATRIZ DE CAPACIDADES EN LÍNEA",
+        "SISTEMA LISTO PARA REVISIÓN"
+      ];
+
+      const updateClock = () => {
+        clock.textContent = new Intl.DateTimeFormat("es-CL", {
+          hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+        }).format(new Date());
+      };
+      updateClock();
+      window.setInterval(updateClock, 1000);
+
+      if (reduceMotion) {
+        bootLine.textContent = bootMessages.at(-1);
+      } else {
+        let messageIndex = 0;
+        let characterIndex = 0;
+        const typeNext = () => {
+          const message = bootMessages[messageIndex];
+          bootLine.textContent = `> ${message.slice(0, characterIndex)}`;
+          characterIndex += 1;
+          if (characterIndex <= message.length) {
+            window.setTimeout(typeNext, 34);
+          } else {
+            window.setTimeout(() => {
+              messageIndex = (messageIndex + 1) % bootMessages.length;
+              characterIndex = 0;
+              typeNext();
+            }, 2400);
+          }
+        };
+        typeNext();
+      }
+
+      if ("IntersectionObserver" in window) {
+        const sections = document.querySelectorAll("main > section[id]");
+        const sectionObserver = new IntersectionObserver(entries => {
+          const visible = entries.filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) sectionReadout.textContent = visible.target.id.toUpperCase();
+        }, { rootMargin: "-35% 0px -50%", threshold: [0, .1, .4] });
+        sections.forEach(section => sectionObserver.observe(section));
+      }
     })();
   </script>
 </body>
