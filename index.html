@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07111e">
+  <meta name="theme-color" content="#09080e">
   <meta name="description" content="Kevin Vargas, Administrador Público especializado en gestión del talento, inducción, capacitación, mejora de procesos y soluciones digitales.">
-  <title>Kevin Vargas · Personas, procesos y aprendizaje</title>
+  <title>Kevin Vargas · Sistema de información profesional</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -600,11 +600,291 @@
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .js .reveal { opacity: 1; transform: none; }
     }
+
+    /* EXPERIMENTO 01 — DIRECCIÓN VISUAL: MECHA / INTERFAZ TÁCTICA NOVENTERA */
+    :root {
+      --background: #09080e;
+      --surface: #12101a;
+      --surface-raised: #1a1625;
+      --line: rgba(201, 255, 54, .18);
+      --line-strong: rgba(201, 255, 54, .48);
+      --text: #f4f2ec;
+      --muted: #aaa4b4;
+      --muted-dark: #777080;
+      --blue: #7c4dff;
+      --cyan: #c9ff36;
+      --amber: #ff8a00;
+      --violet: #7b2cff;
+      --danger: #ff3b30;
+      --font: "Barlow Condensed", Arial, sans-serif;
+      --radius: 0px;
+    }
+
+    body {
+      background:
+        linear-gradient(115deg, transparent 0 69%, rgba(123,44,255,.09) 69% 78%, transparent 78%),
+        radial-gradient(circle at 82% 13%, rgba(123,44,255,.22), transparent 27%),
+        #09080e;
+      font-size: 18px;
+      letter-spacing: .01em;
+    }
+    body::before {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      right: 18px;
+      width: 8px;
+      height: 100vh;
+      content: "";
+      background: repeating-linear-gradient(to bottom, var(--cyan) 0 34px, transparent 34px 43px);
+      opacity: .75;
+      pointer-events: none;
+    }
+    body::after {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 100% 5px;
+      pointer-events: none;
+    }
+    .container { width: min(calc(100% - 64px), 1220px); }
+    .nav { border-bottom: 3px solid var(--cyan); background: rgba(9,8,14,.93); }
+    .nav::after { position:absolute; right:0; bottom:-3px; width:30%; height:3px; content:""; background:var(--violet); }
+    .nav-inner { min-height: 72px; }
+    .brand-sign {
+      width: 50px; height: 34px; border: 0; border-radius: 0;
+      background: var(--cyan); color: #09080e; font-weight: 900;
+      clip-path: polygon(0 0,100% 0,83% 100%,0 100%);
+    }
+    .brand-label strong { font-size: 1.05rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .brand-label span, .nav-links a { font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .07em; }
+    .nav-contact { border: 0; border-radius: 0; background: var(--violet); font-weight: 700; }
+    .hero { position: relative; min-height: calc(100vh - 72px); display:grid; align-items:center; padding: 74px 0 70px; overflow:hidden; }
+    .hero::before {
+      position:absolute; right:-4vw; top:5%; width:46vw; height:90%; content:"01";
+      color:rgba(123,44,255,.11); font-size:min(70vw,680px); font-weight:900; line-height:.8;
+      letter-spacing:-.12em; pointer-events:none;
+    }
+    .hero::after {
+      position:absolute; left:0; bottom:0; width:38%; height:15px; content:"";
+      background:linear-gradient(90deg,var(--violet) 0 58%,var(--amber) 58% 75%,var(--cyan) 75%);
+      clip-path:polygon(0 0,96% 0,100% 100%,0 100%);
+    }
+    .hero-grid { grid-template-columns:minmax(0,1.25fr) minmax(330px,.75fr); gap:60px; }
+    .eyebrow,.kicker { color:var(--cyan); font-weight:700; letter-spacing:.18em; }
+    .eyebrow::before { border-radius:0; box-shadow:none; transform:rotate(45deg); }
+    .hero h1 { max-width:760px; font-size:clamp(4rem,8.4vw,8.2rem); line-height:.78; letter-spacing:-.055em; text-transform:uppercase; font-weight:900; }
+    .hero h1 span { display:block; color:var(--cyan); text-shadow:5px 5px 0 var(--violet); }
+    .hero-copy { max-width:650px; border-left:6px solid var(--violet); padding-left:18px; color:#d5d0db; font-size:1.15rem; line-height:1.45; }
+    .button { min-height:48px; border-radius:0; text-transform:uppercase; font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); }
+    .button-primary { background:var(--cyan); font-weight:800; }
+    .button-secondary { border-color:var(--violet); box-shadow:inset 5px 0 0 var(--violet); }
+    .hero-tags span,.tag { border-radius:0; border-left:3px solid var(--violet); background:rgba(123,44,255,.08); text-transform:uppercase; }
+    .identity-card,.case-frame,.experience-card,.project-card,.profile-card,.contact-box { border-radius:0 !important; position:relative; }
+    .identity-card { padding:0; border:2px solid var(--violet); background:rgba(18,16,26,.95); box-shadow:18px 18px 0 rgba(123,44,255,.16); }
+    .identity-card::before { display:block; padding:7px 18px; content:"PERSONNEL PROFILE / 01"; background:var(--violet); color:white; font:600 .64rem var(--mono); letter-spacing:.12em; }
+    .identity-top { padding:22px; }
+    .portrait { border-radius:0; border:2px solid var(--cyan); background:#211838; }
+    .identity-label,.capability,.identity-foot { margin-left:22px; margin-right:22px; }
+    .identity-foot { border-radius:0; border-left:4px solid var(--cyan); }
+    .section { position:relative; padding:105px 0; }
+    .section-border { border-top:1px solid rgba(201,255,54,.22); }
+    .section-heading { position:relative; padding-left:24px; border-left:8px solid var(--violet); }
+    .section-title { font-size:clamp(2.8rem,5.8vw,5rem); line-height:.92; letter-spacing:-.035em; text-transform:uppercase; font-weight:800; }
+    .case-frame { border:1px solid var(--line-strong); box-shadow:12px 12px 0 rgba(201,255,54,.04); }
+    .case-header { border-bottom:0; background:linear-gradient(90deg,var(--violet) 0 7px,rgba(123,44,255,.18) 7px); }
+    .case-status { border-radius:0; border-color:var(--cyan); background:var(--cyan); color:#09080e; font-weight:700; }
+    .stats-grid { border-radius:0; background:var(--violet); }
+    .stat { background:#15111e; border-top:3px solid transparent; }
+    .stat:nth-child(odd) { border-top-color:var(--cyan); }
+    .stat strong { font-size:2rem; font-weight:800; }
+    .journey-canvas { border-radius:0; border-color:rgba(123,44,255,.6); background:linear-gradient(135deg,rgba(123,44,255,.12),transparent 45%),#0c0a11; }
+    .journey-station { border-radius:0; border-left:5px solid var(--violet); }
+    .journey-station[aria-selected="true"] { border-color:var(--cyan); background:#201835; box-shadow:9px 9px 0 rgba(201,255,54,.12); }
+    .tour-button { border-radius:0; background:var(--violet); color:white; border:0; }
+    .tour-play { border-radius:0; background:var(--cyan); }
+    .contact-box { border:2px solid var(--cyan); background:linear-gradient(110deg,rgba(123,44,255,.2),transparent 65%),#12101a; }
+    footer { border-top:9px solid var(--violet); }
+    .eva-side-label { position:fixed; z-index:40; left:8px; bottom:20px; color:var(--muted-dark); font:500 .58rem var(--mono); letter-spacing:.18em; writing-mode:vertical-rl; transform:rotate(180deg); pointer-events:none; }
+    .system-strip { position:absolute; left:0; top:72px; z-index:4; display:flex; gap:24px; width:100%; padding:6px 4vw; overflow:hidden; background:var(--amber); color:#09080e; font:800 .62rem var(--mono); letter-spacing:.12em; white-space:nowrap; }
+    @media (max-width: 760px) {
+      body::before,.eva-side-label { display:none; }
+      .container { width:min(calc(100% - 34px),1220px); }
+      .hero { padding-top:92px; }
+      .hero h1 { font-size:clamp(3.35rem,18vw,5.2rem); }
+      .hero h1 span { text-shadow:3px 3px 0 var(--violet); }
+      .identity-card { box-shadow:8px 8px 0 rgba(123,44,255,.16); }
+      .section { padding:75px 0; }
+    }
+
+    /* EXPERIMENTO 02 — CONSOLA ADMINISTRATIVA / ARCHIVO INSTITUCIONAL */
+    :root {
+      --background: #0b0c0d;
+      --surface: #111315;
+      --surface-raised: #171a1d;
+      --text: #e9e8df;
+      --muted: #aaa99f;
+      --muted-dark: #72756f;
+      --cyan: #d6ff3f;
+      --violet: #7560a8;
+      --amber: #d69a34;
+      --line: rgba(233,232,223,.14);
+      --line-strong: rgba(214,255,63,.34);
+    }
+    body {
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px),
+        #0b0c0d;
+      background-size: 84px 84px;
+      color:var(--text);
+    }
+    body::before { right:12px; width:4px; background:repeating-linear-gradient(to bottom,var(--cyan) 0 16px,transparent 16px 24px); opacity:.52; }
+    .nav { border-bottom:1px solid var(--line-strong); background:rgba(11,12,13,.96); }
+    .nav::before { position:absolute; left:0; bottom:-1px; width:24%; height:2px; content:""; background:var(--cyan); }
+    .nav::after { right:8%; width:12%; height:2px; background:var(--violet); }
+    .brand-sign { width:44px; background:transparent; color:var(--cyan); border:1px solid var(--cyan); clip-path:none; }
+    .nav-contact { background:transparent; border:1px solid var(--line-strong); }
+    .system-strip {
+      top:72px; justify-content:space-between; padding:5px max(32px,calc((100vw - 1220px)/2));
+      background:#d1d0c7; color:#111315; border-bottom:3px solid var(--amber);
+      font-size:.58rem;
+    }
+    .system-strip span:nth-child(2)::before { content:"REF. "; opacity:.55; }
+    .hero { min-height:auto; padding:112px 0 92px; }
+    .hero::before { right:2vw; top:14%; width:auto; height:auto; content:"P.01"; color:rgba(214,255,63,.035); font-size:min(38vw,420px); letter-spacing:-.08em; }
+    .hero::after { width:28%; height:7px; background:linear-gradient(90deg,var(--violet) 0 64%,var(--amber) 64% 79%,var(--cyan) 79%); }
+    .hero-grid { align-items:start; }
+    .eyebrow { margin-bottom:34px; color:var(--muted); }
+    .eyebrow::before { width:22px; height:2px; transform:none; background:var(--cyan); }
+    .hero h1 { max-width:790px; font-size:clamp(3.7rem,7.2vw,7rem); line-height:.84; letter-spacing:-.035em; }
+    .hero h1 span { color:var(--text); text-shadow:none; }
+    .hero h1 span::before { content:"\2014 "; color:var(--cyan); }
+    .hero-copy { position:relative; max-width:650px; padding:18px 18px 18px 25px; border:1px solid var(--line); border-left:5px solid var(--violet); background:rgba(17,19,21,.72); }
+    .hero-copy::before { position:absolute; right:10px; top:6px; content:"SÍNTESIS EJECUTIVA"; color:var(--muted-dark); font:500 .55rem var(--mono); letter-spacing:.12em; }
+    .button { clip-path:none; }
+    .button-primary { background:var(--cyan); }
+    .button-secondary { box-shadow:inset 3px 0 0 var(--violet); }
+    .hero-tags span,.tag { border:1px solid var(--line); border-left:2px solid var(--violet); background:rgba(255,255,255,.018); }
+    .identity-card { border:1px solid var(--line-strong); box-shadow:10px 10px 0 rgba(117,96,168,.08); }
+    .identity-card::before { content:"FICHA FUNCIONAL  /  REGISTRO KV-01"; background:#d1d0c7; color:#111315; }
+    .identity-card::after { position:absolute; right:12px; bottom:10px; content:"ARCHIVO ACTIVO"; color:rgba(214,255,63,.34); font:600 .54rem var(--mono); letter-spacing:.12em; writing-mode:vertical-rl; }
+    .portrait { border:1px solid var(--line-strong); filter:grayscale(.2) contrast(1.05); }
+    .identity-top h2 { text-transform:uppercase; letter-spacing:.04em; }
+    .capability { font-family:var(--mono); font-size:.74rem; text-transform:uppercase; }
+    .identity-foot { border-left:3px solid var(--cyan); background:rgba(214,255,63,.045); }
+    .console-readout {
+      margin:18px 22px 22px; padding:14px; border:1px solid rgba(124,233,222,.34);
+      background:rgba(5,12,12,.58); font-family:var(--mono);
+    }
+    .console-readout-head { display:flex; justify-content:space-between; gap:12px; margin-bottom:11px; color:#7ce9de; font-size:.62rem; letter-spacing:.09em; }
+    .console-readout-head span:last-child { color:var(--amber); }
+    .console-row { display:grid; grid-template-columns:98px 1fr 34px; align-items:center; gap:9px; margin:8px 0; color:#c8c8c0; font-size:.61rem; }
+    .console-meter { height:7px; border:1px solid rgba(214,154,52,.35); background:repeating-linear-gradient(90deg,rgba(214,154,52,.13) 0 8px,transparent 8px 11px); }
+    .console-meter > i { display:block; height:100%; background:repeating-linear-gradient(135deg,#d47431 0 4px,#f0a54d 4px 7px); box-shadow:0 0 7px rgba(240,118,46,.32); }
+    .console-row b { color:#f0a54d; font-weight:500; text-align:right; }
+    .triad { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; padding-top:30px; }
+    .triad::before { position:absolute; top:0; left:50%; width:1px; height:30px; content:""; background:#7ce9de; }
+    .triad-module { min-height:54px; display:grid; place-content:center; padding:8px; border:1px solid rgba(124,233,222,.55); color:#bdfbf4; text-align:center; font-size:.58rem; line-height:1.35; box-shadow:inset 0 0 12px rgba(124,233,222,.035); }
+    .triad-module:first-child { grid-column:1/-1; justify-self:center; width:58%; }
+    .triad-module strong { display:block; color:#e8e8df; font-size:.7rem; }
+    .triad-module.is-warn { border-color:rgba(240,118,46,.65); color:#f0a54d; }
+    .section { padding:96px 0; }
+    .section-heading { padding-left:20px; border-left:4px solid var(--violet); }
+    .section-heading::after { position:absolute; top:0; right:0; content:"DOCUMENTO DE TRABAJO"; color:var(--muted-dark); font:500 .55rem var(--mono); letter-spacing:.12em; }
+    .section-title { max-width:950px; font-size:clamp(2.7rem,5vw,4.7rem); line-height:.94; text-transform:none; }
+    .kicker { color:var(--cyan); }
+    .case-frame { border:1px solid var(--line); box-shadow:none; }
+    .case-header { border-bottom:1px solid var(--line); background:linear-gradient(90deg,var(--violet) 0 4px,rgba(117,96,168,.06) 4px); }
+    .case-status { background:transparent; color:var(--cyan); border:1px solid var(--line-strong); }
+    .stats-grid { background:var(--line); border:1px solid var(--line); }
+    .stat { background:#121416; border-top:0; border-left:3px solid transparent; }
+    .stat:nth-child(odd) { border-top:0; border-left-color:var(--cyan); }
+    .stat strong { color:var(--text); }
+    .stat strong::after { content:""; display:block; width:24px; height:2px; margin-top:5px; background:var(--cyan); }
+    .journey-canvas { border:1px solid var(--line); background:linear-gradient(135deg,rgba(117,96,168,.07),transparent 45%),#0d0f10; }
+    .journey-grid { opacity:.52; background-image:radial-gradient(circle,rgba(124,233,222,.22) 1px,transparent 1.5px); background-size:24px 24px; mask-image:none; }
+    .journey-station { border:1px solid var(--line); border-left:3px solid var(--violet); background:rgba(15,17,18,.95); }
+    .journey-station[aria-selected="true"] { border-color:var(--line-strong); border-left:5px solid var(--cyan); background:#191b1c; box-shadow:6px 6px 0 rgba(214,255,63,.07); }
+    .tour-button { background:transparent; color:var(--cyan); border:1px solid var(--line-strong); }
+    .experience-card,.project-card,.profile-card { border-color:var(--line); background:#111315; }
+    .contact-box { border:1px solid var(--line-strong); background:linear-gradient(110deg,rgba(117,96,168,.08),transparent 65%),#111315; }
+    /* CONSOLA APLICADA A TODO EL DOCUMENTO */
+    .stage-theater,.learning-card,.process-detail,.analytics-card,.impact-card,
+    .experience-card,.project,.profile-card {
+      border-radius:0 !important; background:#101214; border-color:var(--line);
+    }
+    .stage-theater { border-top:3px solid var(--amber); }
+    .theater-top { background:#0a0c0d; border-bottom:1px solid rgba(124,233,222,.26); }
+    .theater-brand,.scene-chapter,.theater-status { color:#7ce9de; font-family:var(--mono); letter-spacing:.08em; }
+    .theater-button { border-radius:0; border-color:rgba(124,233,222,.28); }
+    .scene-window { background-color:#090c0d; background-image:radial-gradient(circle,rgba(124,233,222,.15) 1px,transparent 1.4px); background-size:20px 20px; }
+    .issue-card,.blueprint-module,.content-card,.moodle-shell,.moodle-row { border-radius:0 !important; }
+    .process-detail { border-left:4px solid var(--cyan); background:linear-gradient(90deg,rgba(214,255,63,.04),transparent 45%),#101214; }
+    .detail-number { color:var(--amber); }
+    .detail-output { border-radius:0; border:1px solid rgba(124,233,222,.28); color:#7ce9de; }
+    .learning-card { position:relative; padding-top:42px; }
+    .learning-card::before { position:absolute; inset:0 0 auto; padding:6px 12px; content:"SUBSISTEMA DE SEGUIMIENTO"; border-bottom:1px solid rgba(124,233,222,.25); color:#7ce9de; font:600 .57rem var(--mono); letter-spacing:.1em; }
+    .learning-card:nth-child(2)::before { content:"LECTURA DE AVANCE"; color:var(--amber); border-bottom-color:rgba(214,154,52,.3); }
+    .module { border-radius:0; border-left:3px solid var(--violet); }
+    .module[data-complete="true"] { border-left-color:#7ce9de; background:rgba(124,233,222,.035); }
+    .module-state { color:#7ce9de; }
+    .progress-track { border-radius:0; background:repeating-linear-gradient(90deg,rgba(214,154,52,.1) 0 12px,transparent 12px 16px); }
+    .progress-bar { border-radius:0; background:repeating-linear-gradient(135deg,#d47431 0 5px,#f0a54d 5px 9px); box-shadow:0 0 8px rgba(240,118,46,.25); }
+    .progress-value { color:var(--amber); text-shadow:0 0 10px rgba(214,154,52,.18); }
+    .analytics-card { border-color:rgba(124,233,222,.3); }
+    .analytics-bar { border-radius:0; background:repeating-linear-gradient(135deg,#d47431 0 4px,#f0a54d 4px 7px); }
+    .impact-card { border-color:rgba(124,233,222,.3); background:rgba(7,12,12,.93); }
+    .impact-label,.impact-item strong { color:#7ce9de; }
+    .impact-item { border-radius:0; background:#0c0f10; }
+    .experience-list { counter-reset:exp; }
+    .experience-card { counter-increment:exp; position:relative; padding:48px 24px 24px; border-left:4px solid var(--violet); }
+    .experience-card::before { position:absolute; inset:0 0 auto; padding:7px 14px; content:"REGISTRO DE EXPERIENCIA  /  EXP-0" counter(exp); background:#0a0c0d; border-bottom:1px solid var(--line); color:#7ce9de; font:600 .58rem var(--mono); letter-spacing:.11em; }
+    .experience-card::after { position:absolute; top:0; right:0; width:8px; height:31px; content:""; background:var(--cyan); }
+    .experience-meta { color:var(--amber); }
+    .experience-card h3 { font-size:1.45rem; }
+    .experience-card li::marker { color:#7ce9de; }
+    .record-signals { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line); }
+    .record-signal { display:grid; gap:5px; color:var(--muted-dark); font:500 .57rem var(--mono); letter-spacing:.05em; }
+    .record-signal i { height:5px; background:repeating-linear-gradient(90deg,#d47431 0 7px,transparent 7px 10px); }
+    .projects-grid { counter-reset:project; }
+    .project { counter-increment:project; position:relative; padding-top:50px; border-top:2px solid var(--violet); }
+    .project::before { position:absolute; inset:0 0 auto; padding:7px 12px; content:"INICIATIVA REGISTRADA  /  PRJ-0" counter(project); color:#7ce9de; background:#0a0c0d; border-bottom:1px solid var(--line); font:600 .56rem var(--mono); letter-spacing:.09em; }
+    .project::after { position:absolute; right:14px; bottom:14px; content:"ABRIR EXPEDIENTE  ↗"; color:var(--muted-dark); font:500 .54rem var(--mono); letter-spacing:.07em; }
+    .project:hover { border-color:var(--cyan); box-shadow:7px 7px 0 rgba(214,255,63,.055); }
+    .project-type { color:var(--amber); }
+    .project h3 { font-size:1.45rem; }
+    .profile-card { position:relative; padding-top:52px; }
+    .profile-card::before { position:absolute; inset:0 0 auto; padding:8px 14px; content:"ANTECEDENTES ACADÉMICOS  /  VALIDADO"; color:#7ce9de; background:#0a0c0d; border-bottom:1px solid rgba(124,233,222,.22); font:600 .57rem var(--mono); letter-spacing:.09em; }
+    .profile-card:nth-child(2)::before { content:"MATRIZ DE HERRAMIENTAS  /  ACTIVA"; color:var(--amber); border-bottom-color:rgba(214,154,52,.28); }
+    .education-item { position:relative; padding-left:16px; border-left:2px solid var(--violet); }
+    .education-item::after { position:absolute; left:-4px; top:7px; width:6px; height:6px; content:""; background:var(--cyan); }
+    .skill-group { padding:12px; border:1px solid var(--line); background:#0c0e0f; }
+    .skill-group + .skill-group { margin-top:8px; }
+    .skill-group h4 { color:#7ce9de; }
+    .contact-box::before { position:absolute; inset:0 0 auto; padding:6px 12px; content:"CANAL DE CONTACTO  /  DISPONIBLE"; color:#7ce9de; background:#090b0c; border-bottom:1px solid rgba(124,233,222,.25); font:600 .57rem var(--mono); letter-spacing:.1em; }
+    .contact-box { padding-top:58px; }
+    @media (max-width:760px) {
+      .record-signals { grid-template-columns:1fr; }
+      .experience-card,.project,.profile-card { padding-inline:18px; }
+    }
+    footer { border-top:4px solid var(--violet); background:#080909; }
+    .eva-side-label { color:#60645e; }
+    @media (max-width:760px) {
+      .system-strip { padding-inline:17px; justify-content:flex-start; }
+      .system-strip span:nth-child(n+3) { display:none; }
+      .section-heading::after { display:none; }
+      .hero h1 { font-size:clamp(3.25rem,16vw,5rem); }
+    }
   </style>
   <script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body>
+  <div class="eva-side-label" aria-hidden="true">K.V. // HUMAN DEVELOPMENT SYSTEM // 2026</div>
   <nav class="nav" aria-label="Navegación principal">
     <div class="container nav-inner">
       <a class="brand" href="#inicio" aria-label="Kevin Vargas: volver al inicio">
@@ -626,13 +906,14 @@
   </nav>
 
   <header id="inicio" class="hero">
+    <div class="system-strip" aria-hidden="true"><span>ESTADO: ACTIVO</span><span>GESTIÓN DE PERSONAS</span><span>PROCESOS ADMINISTRATIVOS</span><span>SISTEMA DE APRENDIZAJE</span><span>CONTROL DOCUMENTAL: VIGENTE</span></div>
     <div class="container hero-grid">
       <div class="reveal">
-        <div class="eyebrow">Gestión del talento y soluciones formativas</div>
+        <div class="eyebrow">Sistema de información profesional · Registro KV–01</div>
         <h1>Diseño procesos para <span>aprender mejor.</span></h1>
         <p class="hero-copy">
-          Soy Administrador Público y transformo necesidades institucionales complejas en
-          experiencias de inducción, capacitación y gestión claras, medibles y digitales.
+          Soy Administrador Público. Me gusta tomar problemas que suelen verse complejos y convertirlos
+          en procesos más claros, especialmente en gestión de personas, capacitación y herramientas digitales.
         </p>
 
         <div class="actions">
@@ -667,6 +948,18 @@
         <div class="capability"><span>Plataformas y contenidos</span><span>DIGITAL</span></div>
 
         <p class="identity-foot">◉ Experiencia en proyectos institucionales de alcance nacional.</p>
+
+        <div class="console-readout" aria-label="Resumen técnico del perfil">
+          <div class="console-readout-head"><span>MATRIZ DE CAPACIDADES</span><span>REG. KV/2026</span></div>
+          <div class="console-row"><span>GESTIÓN PÚBLICA</span><span class="console-meter"><i style="width:94%"></i></span><b>94</b></div>
+          <div class="console-row"><span>PERSONAS</span><span class="console-meter"><i style="width:91%"></i></span><b>91</b></div>
+          <div class="console-row"><span>PROCESOS</span><span class="console-meter"><i style="width:88%"></i></span><b>88</b></div>
+          <div class="triad" aria-label="Tres ámbitos profesionales integrados">
+            <div class="triad-module"><span>MÓDULO 01</span><strong>GESTIÓN PÚBLICA</strong></div>
+            <div class="triad-module"><span>MÓDULO 02</span><strong>PERSONAS</strong></div>
+            <div class="triad-module is-warn"><span>MÓDULO 03</span><strong>TRANSFORMACIÓN</strong></div>
+          </div>
+        </div>
       </aside>
     </div>
   </header>
@@ -687,16 +980,15 @@
           <div class="case-header">
             <div class="case-identification">
               <strong>Programa de inducción · Personal civil</strong>
-              <span>Carabineros de Chile · Dirección Nacional de Personal</span>
+            <span>Carabineros de Chile · Dirección Nacional de Personal · Expediente de gestión</span>
             </div>
             <span class="case-status">CASO REAL</span>
           </div>
 
           <div class="case-intro">
             <p>
-              Estructuré una experiencia formativa asincrónica para estandarizar la incorporación
-              del personal civil, organizar información institucional y acompañar el aprendizaje
-              desde cualquier región del país.
+              Este proyecto nació de una necesidad bastante concreta: ordenar la información que recibe
+              el personal civil cuando ingresa y hacer que esa experiencia sea similar, sin importar la región del país.
             </p>
           </div>
 
@@ -948,10 +1240,10 @@
       <div class="container experience-layout">
         <div class="section-heading reveal">
           <span class="kicker">02 / Experiencia</span>
-          <h2 class="section-title">Personas, operación y proyectos que necesitan funcionar.</h2>
+          <h2 class="section-title">Trabajo con personas, procesos y proyectos que tienen que funcionar de verdad.</h2>
           <p class="section-copy">
-            Mi experiencia combina gestión del talento, coordinación operativa, formación,
-            análisis institucional y ejecución de proyectos con múltiples actores.
+            He trabajado en gestión de personas, coordinación operativa, formación y análisis institucional.
+            Me acomoda especialmente ordenar procesos y coordinar a quienes deben sacarlos adelante.
           </p>
         </div>
 
@@ -960,24 +1252,34 @@
             <div class="experience-meta"><span>CARABINEROS DE CHILE</span><span>JUN. 2024 — ACTUALIDAD</span></div>
             <h3>Asesor en Gestión del Talento</h3>
             <span class="experience-place">Departamento de Personal Civil · Dirección Nacional de Personal</span>
-            <p>Participo en el diseño de iniciativas de retención, inducción y desarrollo dirigidas al personal civil de la institución.</p>
+            <p>Trabajo en iniciativas de retención, inducción y desarrollo para el personal civil de la institución.</p>
             <ul>
               <li>Diseño e implementación de un proceso nacional de inducción asincrónica en Moodle.</li>
               <li>Análisis de rotación, percepción y experiencia del personal para apoyar decisiones directivas.</li>
               <li>Coordinación de iniciativas formativas y de desarrollo con distintas áreas institucionales.</li>
             </ul>
+            <div class="record-signals" aria-label="Ámbitos principales del cargo">
+              <span class="record-signal">PERSONAS<i style="width:94%"></i></span>
+              <span class="record-signal">ANÁLISIS<i style="width:86%"></i></span>
+              <span class="record-signal">COORDINACIÓN<i style="width:91%"></i></span>
+            </div>
           </article>
 
           <article class="experience-card reveal">
             <div class="experience-meta"><span>FUNDACIÓN EDUCACIONAL ESCONDIDA · CEIM</span><span>2022 — 2024</span></div>
             <h3>Coordinador de Proyectos 3D</h3>
             <span class="experience-place">Salamanca · Proyecto de acreditación de competencias laborales</span>
-            <p>Coordiné la operación de una sede asociada a proyectos de acreditación de competencias vinculados a la industria minera.</p>
+            <p>Coordiné la operación de una sede vinculada a proyectos de acreditación de competencias para la industria minera.</p>
             <ul>
               <li>Seguimiento de participantes, requerimientos y continuidad operativa del proyecto.</li>
               <li>Coordinación de recursos, equipos, procesos administrativos y apoyo logístico.</li>
               <li>Articulación de necesidades de participantes, jefaturas y organizaciones relacionadas.</li>
             </ul>
+            <div class="record-signals" aria-label="Ámbitos principales del cargo">
+              <span class="record-signal">OPERACIÓN<i style="width:95%"></i></span>
+              <span class="record-signal">LOGÍSTICA<i style="width:89%"></i></span>
+              <span class="record-signal">PROYECTOS<i style="width:92%"></i></span>
+            </div>
           </article>
         </div>
       </div>
@@ -987,8 +1289,8 @@
       <div class="container">
         <div class="section-heading reveal">
           <span class="kicker">03 / Proyectos aplicados</span>
-          <h2 class="section-title">Cuando una necesidad merece una solución propia.</h2>
-          <p class="section-copy">Iniciativas que conectan empleabilidad, gestión de personas y herramientas digitales.</p>
+          <h2 class="section-title">A veces la mejor forma de resolver algo es construirlo.</h2>
+          <p class="section-copy">Estos son algunos proyectos donde he unido empleabilidad, gestión de personas y herramientas digitales.</p>
         </div>
 
         <div class="projects-grid">
@@ -1021,7 +1323,7 @@
         <div class="section-heading reveal">
           <span class="kicker">04 / Formación y herramientas</span>
           <h2 class="section-title">Gestión pública con criterio digital.</h2>
-          <p class="section-copy">Una formación orientada a entender organizaciones, mejorar procesos y comunicar soluciones.</p>
+          <p class="section-copy">Mi formación me ha ayudado a entender cómo funcionan las organizaciones y, sobre todo, cómo hacer más claros sus procesos.</p>
         </div>
 
         <div class="profile-grid">
@@ -1057,8 +1359,8 @@
         <div class="contact-box reveal">
           <div>
             <span class="kicker">05 / Contacto</span>
-            <h2>¿Conversamos sobre tu próximo proyecto?</h2>
-            <p>Me interesan las oportunidades relacionadas con gestión de personas, aprendizaje, desarrollo organizacional y mejora de procesos.</p>
+            <h2>Si algo de esto te hizo sentido, conversemos.</h2>
+            <p>Siempre estoy disponible para conversar sobre gestión de personas, aprendizaje, desarrollo organizacional o mejora de procesos.</p>
             <div class="contact-links">
               <a href="mailto:kev.var.arr@gmail.com">kev.var.arr@gmail.com</a>
               <a href="https://www.linkedin.com/in/kvargass/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -1083,16 +1385,16 @@
       const stages = [
         {
           title: "Comprender la necesidad institucional",
-          description: "Identifiqué necesidades de información, características del personal y brechas en la experiencia de incorporación.",
+          description: "Partí escuchando las dudas más comunes y revisando dónde se perdía o se fragmentaba la información.",
           output: "Resultado: necesidades y brechas identificadas",
           chapter: "Diagnóstico",
           sceneTitle: "Primero había que entender el problema.",
-          sceneCopy: "La información existía, pero no siempre llegaba de manera clara, oportuna y consistente a cada nuevo ingreso.",
+          sceneCopy: "La información existía, pero estaba repartida en distintos lugares y no siempre llegaba a tiempo a cada nuevo ingreso.",
           evidence: "Punto de partida: experiencia dispersa"
         },
         {
           title: "Definir una ruta de aprendizaje coherente",
-          description: "Organicé el proceso en nueve módulos y cuatro instancias de evaluación, estructurando una secuencia comprensible para los nuevos ingresos.",
+          description: "Ordené el proceso en nueve módulos y cuatro evaluaciones, procurando que cada paso tuviera sentido para quien recién ingresaba.",
           output: "Resultado: 9 módulos y 4 evaluaciones",
           chapter: "Arquitectura formativa",
           sceneTitle: "La información se convirtió en una ruta.",
@@ -1101,7 +1403,7 @@
         },
         {
           title: "Traducir información compleja en contenidos útiles",
-          description: "Desarrollé contenidos escritos, visuales y didácticos para facilitar la comprensión de materias institucionales y orientar a cada participante.",
+          description: "Preparé materiales escritos y visuales para explicar temas institucionales sin volverlos más complicados de lo necesario.",
           output: "Resultado: materiales escritos y visuales",
           chapter: "Diseño de contenidos",
           sceneTitle: "Cada contenido tenía que ser útil.",
@@ -1110,7 +1412,7 @@
         },
         {
           title: "Implementar una experiencia asincrónica en Moodle",
-          description: "Coordiné la puesta en marcha del programa en una plataforma digital, permitiendo una experiencia estandarizada con alcance nacional.",
+          description: "Coordiné la puesta en marcha en Moodle para que la experiencia pudiera funcionar de manera similar en todo el país.",
           output: "Resultado: plataforma operativa a nivel nacional",
           chapter: "Implementación en Moodle",
           sceneTitle: "El proceso tomó forma en un aula digital.",
@@ -1119,7 +1421,7 @@
         },
         {
           title: "Hacer visible el avance del proceso",
-          description: "Estructuré el seguimiento de inscripciones, participación, etapas alcanzadas y finalización para identificar oportunidades de intervención.",
+          description: "Organicé el seguimiento de inscripciones y avances para saber quién necesitaba apoyo y en qué momento.",
           output: "Resultado: trazabilidad y seguimiento",
           chapter: "Seguimiento",
           sceneTitle: "El avance dejó de ser invisible.",
@@ -1128,7 +1430,7 @@
         },
         {
           title: "Ajustar a partir de la experiencia y los resultados",
-          description: "Integré observaciones, coordinación entre áreas y análisis de resultados para fortalecer la implementación y la experiencia del participante.",
+          description: "Fui incorporando observaciones y resultados para ajustar el proceso y hacerlo más útil para quienes participan.",
           output: "Resultado: ajustes y mejora continua",
           chapter: "Mejora continua",
           sceneTitle: "Un proceso que aprende y evoluciona.",
