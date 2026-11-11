@@ -36,6 +36,12 @@ html{scroll-padding-top:105px}body{padding:0;font-family:Inter,-apple-system,Bli
 .hero-copy{max-width:550px}.hero-heading h1{font-size:clamp(45px,5.4vw,71px);letter-spacing:-3.6px}.experience{margin-top:35px}.section-head h2{max-width:760px}.section-head p{line-height:1.9}.case p{line-height:1.9}.experience-card p{line-height:1.9}.contact h2{font-size:clamp(32px,4.3vw,54px);max-width:990px;line-height:1.2}
 @media(max-width:1000px){.hero-heading h1{font-size:clamp(40px,5.6vw,61px);letter-spacing:-2.8px}}
 @media(max-width:700px){.hero-heading h1{font-size:clamp(38px,9.5vw,57px);letter-spacing:-2.2px}.experience{margin-top:20px}.section-head h2{font-size:29px;line-height:1.25}.contact h2{font-size:32px;line-height:1.2;letter-spacing:-1.3px}}
+
+/* A restrained literary illustration within the established interface. */
+.literary-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;margin-bottom:45px;padding:25px 0 35px;border-bottom:1px solid var(--line)}.literary-intro .section-head{display:block;margin:0}.literary-intro .kicker{margin-bottom:23px;font-size:10px;letter-spacing:.4px}.literary-intro h2{font-size:clamp(28px,3.2vw,39px);line-height:1.2;letter-spacing:-1.5px}.literary-intro .section-head p{font-size:13px;line-height:1.95;max-width:480px}.literary-illustration{margin:0;padding:12px 0 0}.literary-illustration img{display:block;width:100%;height:auto;mix-blend-mode:multiply}.literary-illustration figcaption{text-align:center;font-size:10px;letter-spacing:.1px;color:#858580;margin-top:12px;font-style:italic}.literary-intro .kicker i{color:#383834}.literary-intro:before{content:none}
+@media(max-width:1000px){.literary-intro{gap:30px;grid-template-columns:1fr 1fr}.literary-intro h2{font-size:31px;letter-spacing:-1.1px}}
+@media(max-width:700px){.literary-intro{grid-template-columns:1fr;gap:24px;margin-bottom:30px;padding:0 0 27px}.literary-intro .kicker{margin-bottom:17px}.literary-intro h2{font-size:29px;line-height:1.25;letter-spacing:-1.1px}.literary-intro .section-head p{font-size:13px;line-height:1.9}.literary-illustration{max-width:390px;width:100%;margin:0 auto;padding:0}.literary-illustration figcaption{font-size:9px;margin-top:9px}}
+@media print{.literary-intro{break-inside:avoid}.literary-illustration{max-width:300px}}
 </style>
 </head>
 <body>
@@ -122,14 +128,14 @@ html{scroll-padding-top:105px}body{padding:0;font-family:Inter,-apple-system,Bli
 <figure><img src="images/kevin-vargas-actividad-ceim.webp" width="900" height="1200" alt="Kevin Vargas en una actividad de CEIM, sosteniendo un certificado" loading="lazy"><figcaption><span>Experiencias que forman</span>Un registro de mi paso por CEIM</figcaption></figure>
 </div></section>
 <section id="induccion" class="section wrap">
-<div class="section-head">
+<div class="literary-intro"><div class="section-head">
 <span class="kicker"><i class="fa-solid fa-compass" aria-hidden="true"></i> 02 / Acompañar un comienzo</span>
 <div>
 <h2>Llegar a un trabajo nuevo<br>ya trae suficientes preguntas.</h2>
 <p>Una de las iniciativas en las que he trabajado busca ayudar en ese momento: una inducción para que el personal civil que se incorpora pueda encontrar información clara y conocer mejor la institución.</p>
 </div>
 </div>
-<article class="case">
+<figure class="literary-illustration"><img src="images/orientarse-ilustracion.webp" width="1100" height="733" alt="Ilustración en tinta negra: una persona con un papel entre pasillos, escaleras y puertas; al fondo, una puerta abierta" loading="lazy"><figcaption>Encontrar una forma de orientarse.</figcaption></figure></div><article class="case">
 <div class="case-top">
 <span><i class="fa-solid fa-book-open" aria-hidden="true"></i> Carabineros de Chile / Personal Civil</span>
 <span>Diseño + implementación</span>
