@@ -46,6 +46,11 @@ html{scroll-padding-top:105px}body{padding:0;font-family:Inter,-apple-system,Bli
 /* Institutional marks identify the experience; original proportions and colours. */
 .organization-mark{display:flex;align-items:center;gap:15px;margin-bottom:25px;padding-bottom:20px;border-bottom:1px solid #efeff1;min-height:77px}.organization-logo{display:flex;align-items:center;justify-content:center;width:70px;height:58px;flex:0 0 70px;background:white}.organization-logo img{display:block;object-fit:contain;max-width:100%;max-height:100%;height:auto}.ceim-logo img{width:70px}.carabineros-logo img{width:43px}.organization-note{font-size:10px;line-height:1.8;letter-spacing:0;color:#929298;max-width:160px}.academic-brand{display:flex;align-items:center;gap:24px;margin-bottom:28px}.academic-brand>img{display:block;object-fit:contain;width:102px;height:103px;flex-shrink:0;background:white;border:1px solid #ededf0;border-radius:12px;padding:9px}.academic-brand h3{font-size:20px;font-weight:550;line-height:1.35;letter-spacing:-.6px;margin:0}.academic-brand p{font-size:11px;color:var(--muted);margin:8px 0 0}.case-top>span:first-child{display:flex;align-items:center;gap:10px}.case-institution-logo{display:block;width:25px;height:29px;object-fit:contain;flex-shrink:0}
 @media(max-width:700px){.organization-mark{gap:13px;margin-bottom:21px;padding-bottom:17px}.organization-note{font-size:9px;max-width:none}.academic-brand{gap:19px;margin-bottom:24px}.academic-brand>img{width:92px;height:93px;padding:8px}.academic-brand h3{font-size:18px;letter-spacing:-.5px}.academic-brand p{font-size:10px;margin-top:6px}.case-institution-logo{width:22px;height:25px}}
+
+/* Small tool marks and an understated original ink background. */
+.tool-tag{display:inline-flex;align-items:center;gap:7px}.tool-tag i{font-size:14px;line-height:1;color:#77777d}.tool-tag img{display:block;width:16px;height:16px;object-fit:contain;opacity:.58}.tool-tag .fa-pen-ruler{font-size:11px}.contact{position:relative;isolation:isolate;overflow:hidden;background:#f2f2ef}.contact:before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:url('images/footer-arquitectura-tinta.webp');background-position:right bottom;background-size:auto 135%;background-repeat:no-repeat;mix-blend-mode:multiply;opacity:.55}.contact>.wrap{position:relative;z-index:1}.contact .footer{border-top-color:rgba(96,99,89,.15)}.copy-email{background:rgba(255,255,255,.92)}
+@media(max-width:700px){.tool-tag{gap:6px}.tool-tag i{font-size:13px}.tool-tag img{width:15px;height:15px}.contact:before{background-size:auto 100%;background-position:right bottom;opacity:.28}.contact .footer{margin-top:65px}.copy-status{max-width:270px}}
+@media print{.contact:before{display:none}}
 </style>
 </head>
 <body>
@@ -343,12 +348,12 @@ html{scroll-padding-top:105px}body{padding:0;font-family:Inter,-apple-system,Bli
             <div class="skill-group">
               <h4>EXPERIENCIAS DIGITALES</h4>
               <div class="tags">
-<span class="tag">Moodle</span>
-<span class="tag">WordPress</span>
-<span class="tag">HTML</span>
-<span class="tag">CSS</span>
-<span class="tag">JavaScript</span>
-<span class="tag">Comunicación visual</span>
+<span class="tag tool-tag"><img src="images/logo-moodle.svg" width="24" height="24" alt="" aria-hidden="true" loading="lazy">Moodle</span>
+<span class="tag tool-tag"><i class="fa-brands fa-wordpress-simple" aria-hidden="true"></i>WordPress</span>
+<span class="tag tool-tag"><i class="fa-brands fa-html5" aria-hidden="true"></i>HTML</span>
+<span class="tag tool-tag"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i>CSS</span>
+<span class="tag tool-tag"><i class="fa-brands fa-js" aria-hidden="true"></i>JavaScript</span>
+<span class="tag tool-tag"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>Comunicación visual</span>
 </div>
             </div>
           </article>
